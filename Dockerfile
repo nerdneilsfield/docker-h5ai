@@ -31,6 +31,8 @@ RUN echo "Looks like you did not mount a volume to `/var/www`. See README.md for
 RUN mkdir -p /var/www/first/second/third/fourth/fifth
 ADD README.md /var/www/README.md
 
+RUN service php7.0-fpm start
+
 # use supervisor to monitor all services
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
