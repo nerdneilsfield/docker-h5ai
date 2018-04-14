@@ -11,10 +11,10 @@ RUN unzip h5ai-0.29.0.zip -d /usr/share/h5ai
 
 # patch h5ai because we want to deploy it ouside of the document root and use /var/www as root for browsing
 ADD App.php.patch App.php.patch
-RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/server/php/inc/ -i /App.php.patch && rm App.php.patch
+RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/public/inc/ -i /App.php.patch && rm App.php.patch
 
 ADD options.json.patch options.json.patch
-RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/conf/ -i /options.json.patch && rm options.json.patch
+RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/private/conf -i /options.json.patch && rm options.json.patch
 
 # add h5ai as the only nginx site
 ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
