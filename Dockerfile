@@ -13,8 +13,11 @@ RUN unzip h5ai-0.29.0.zip -d /usr/share/h5ai
 # ADD App.php.patch App.php.patch
 # RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/public/inc/ -i /App.php.patch && rm App.php.patch
 
-ADD options.json.patch options.json.patch
-RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/private/conf -i /options.json.patch && rm options.json.patch
+# ADD options.json.patch options.json.patch
+# RUN patch -p1 -u -d /usr/share/h5ai/_h5ai/private/conf -i /options.json.patch && rm options.json.patch
+
+ADD options.json /usr/share/h5ai/_h5ai/private/conf/options.json
+
 
 # add h5ai as the only nginx site
 ADD h5ai.nginx.conf /etc/nginx/sites-available/h5ai
